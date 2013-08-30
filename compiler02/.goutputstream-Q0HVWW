@@ -1,0 +1,38 @@
+/*
+ * Semantic.c
+ *
+ *  Created on: 2013-5-3
+ *      Author: njucsyyh
+ */
+
+#include "Hash_table.h"
+
+//ExtDefList
+void Traverse(PtrTreeNode root){
+	PtrTreeNode temp;
+	printf("start\n");
+
+	if(root->token != NULL){
+        //case1:   ExtDef
+		if(strcmp(root->token, "ExtDef") == 0){
+			printf("in ExtDef\n");
+			PtrTreeNode specifier = root->child[0];
+			Type type = (Type)malloc(sizeof(struct Type_));
+			getSpecifier(type, specifier);
+
+			if( strcmp(root->child[1]->token, "ExtDecList") == 0){
+				addExtDecList(type, root->child[1]);
+			}
+			else if(strcmp(root->child[1]->token, "FunDec") == 0){
+				addFunc(type, root->child[1]);
+			}
+		}
+		//case2:   Def
+		if(strcmp(root->token, "Def") == 0){
+			PtrTreeNode specifier = root->child[0];
+			Type type = (Type)malloc(sizeof(struct Type_));
+			getSpecifier(type, specifier);
+			PtrTreeNode DecList = root->child[1];
+			addDecList(type, DecList);
+		}
+        //

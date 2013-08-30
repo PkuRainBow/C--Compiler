@@ -1,0 +1,111 @@
+//============================================================================
+// Name        : Complier.cpp
+// Author      : njucsyyh
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+/*
+#include <stdio.h>
+#include <string.h>
+#define MAXCHILD 5
+
+typedef enum
+{
+	//High-level
+	Program, ExtDefList, ExtDef, ExtDecList,
+	//specifiers
+	Specifier, StructSpecifier, OptTag, Tag,
+	//declarators
+	VarDec, FunDec, VarList, ParamDec,
+	//statements
+	CompSt, StmtList, Stmt,
+	//local definitions
+	DefList, Def, DecList, Dec,
+	//expressions
+	Exp, Args,
+	//Tokens
+	INT, FLOAT, ID, SEMI, COMMA, ASSIGNOP, RELOP,
+	PLUS, MINUS, STAR, DIV, AND, OR, DOT, NOT,
+	TYPE, LP, RP, LB, RB, LC, RC, STRUCT,
+	RETURN, IF, ELSE, WHILE
+}NodeType;
+
+typedef struct TreeNode{
+	static int childnum;
+	int lineno;
+	struct TreeNode* parent;
+	struct TreeNode* child[MAXCHILD];//指向其所有的子节点
+	//TreeNode* sibling;//兄弟节点
+	struct NodeType ntype;//节点类型
+	char nodestr[20];//内容
+	//int isarray;
+}TreeNode;
+
+typedef struct TreeNode TreeNode;
+struct TreeNode *Insert(TreeNode *root,NodeType ntype, char *nodestr){
+	struct TreeNode *tn = malloc(sizeof(struct TreeNode));
+	int childnum = root->childnum;
+	if(!tn){
+		yyerror("out of space");
+		exit(0);
+	}
+	tn->childnum = 0;
+	tn->lineno = root->lineno;
+    tn->parent = root;
+	tn->ntype = ntype;
+	strncpy(tn->nodestr, nodestr, 20);//存储对应ntype中存储的值或者内容
+    root->child[childnum] = tn;
+    root->childnum++;
+	return tn;
+}
+
+//删除语法树
+void FreeTree(TreeNode *root){
+	int i;
+	if(root==NULL) return;
+	for(i=0; i<root->childnum; i++){
+		FreeTree(root->child[i]);
+	}
+	free(root);
+}
+
+//遍历生成的语法树
+void PrintTree(TreeNode* root){
+   static depth = 0;
+   int i;
+   if(root == NULL) return;
+   //打印 nodetype 需要用switch语句进行转换，或者全部存于string中
+   //printf("ROOT: %s\n", root->nodestr,)
+   //打印空格
+   for(i=0; i<depth; i++) printf(" ");
+   //ROOT
+   printf("%s\n", root->nodestr);
+   for(i=0; i<root->childnum; i++){
+	   depth++;
+	   PrintTree(root->child[i]);
+	   depth--;
+   }
+}
+
+int main(){
+	TreeNode root = (TreeNode)malloc(sizeof(TreeNode));
+	TreeNode t1, t2;
+	root->nodestr = "ROOT";
+	root->childnum = 0;
+	root->parent = NULL;
+	memset(root->child, 0, MAXCHILD);
+
+	t1 = Insert(&root, Program, "Program");
+	t2 = Insert(&root, Def, "Define");
+	printf("***********\n");
+	PrintTree(&root);
+	FreeTree(&root);
+	return 0;
+}
+*/
+
+#include <stdlib.h>
+#include <memory.h>
+#include <stdio.h>
+#define MAXSIZE 5//
